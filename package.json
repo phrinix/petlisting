@@ -1,0 +1,17 @@
+{
+  "name": "petpost",
+  "version": "1.0.0",
+  "description": "Simple pet listing app (EC2 + S3, no database)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.600.0",
+    "@aws-sdk/s3-request-presigner": "^3.600.0",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.1",
+    "body-parser": "^1.20.2"
+  }
+}
