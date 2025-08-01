@@ -4,6 +4,6 @@ A simple Express app that lets volunteers view all uploaded adoptable pets (name
 
 ## Prerequisites
 - **S3 bucket**
-- **EC2 instance** (Amazon Linux 2023, t2.micro)
+- **EC2 instance**
 - **IAM Role for EC2** (S3 read/write on your bucket)
-- Node 18+ on the EC2 host
+- Node on the EC2 host
