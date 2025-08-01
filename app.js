@@ -7,8 +7,6 @@ const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const bodyParser = require('body-parser');
 
 const app = express();
-// Default to port 80 per assignment (use sudo when running on Linux).
-// You can change to 3000 locally if needed.
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 80;
 
 const BUCKET = process.env.S3_BUCKET;
@@ -29,7 +27,6 @@ const upload = multer({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Home: list + form
 app.get('/', async (_req, res) => {
   const pets = await loadPets();
   const withUrls = await Promise.all(pets.map(async p => {
@@ -48,7 +45,6 @@ app.get('/', async (_req, res) => {
   res.send(renderIndex(withUrls));
 });
 
-// Upload new pet
 app.post('/pets', upload.single('photo'), async (req, res) => {
   try {
     const { name, breed, age } = req.body;
@@ -75,7 +71,6 @@ app.post('/pets', upload.single('photo'), async (req, res) => {
   }
 });
 
-// Data helpers: store pets.json in S3 for persistence
 const PETS_KEY = 'data/pets.json';
 
 async function loadPets() {
@@ -106,7 +101,6 @@ function streamToString(stream) {
   });
 }
 
-// Simple template
 function renderIndex(pets) {
   const items = pets.map(p => `
     <li class="pet">
@@ -118,11 +112,11 @@ function renderIndex(pets) {
   `).join('');
   return `
   <!doctype html><html><head>
-    <meta charset="utf-8"><title>PetPost</title>
+    <meta charset="utf-8"><title>Pet Listing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/style.css">
   </head><body>
-    <h1>PetPost</h1>
+    <h1>Pet Listing</h1>
     <section class="form">
       <h2>Add a Pet</h2>
       <form action="/pets" method="post" enctype="multipart/form-data">
@@ -140,4 +134,4 @@ function renderIndex(pets) {
   </body></html>`;
 }
 
-app.listen(PORT, () => console.log(`PetPost running on ${PORT}`));
+app.listen(PORT, () => console.log(`Pet Listing running on ${PORT}`));
