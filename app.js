@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 80;
 
 const BUCKET = process.env.S3_BUCKET;
-const REGION = process.env.AWS_REGION || 'us-east-1';
+const REGION = process.env.AWS_REGION || 'ca-central-1';
 
 if (!BUCKET) {
   console.error('Missing S3_BUCKET env var');
