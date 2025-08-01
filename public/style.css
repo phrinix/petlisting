@@ -3,4 +3,12 @@ h1 { margin-bottom: .5rem; }
 .form { margin: 1rem 0 2rem; }
 input, button { padding: .5rem; margin-right: .5rem; margin-bottom: .5rem; }
 .grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 1rem; }
-.pet img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; }
+.pet img {
+  width: 100%;
+  height: auto;          /* keep aspect ratio */
+  max-height: 320px;     /* prevent huge portrait images from stretching the page */
+  object-fit: contain;   /* show the entire image */
+  background: #f8f8f8;   /* neutral background for letterboxing */
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
